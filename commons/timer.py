@@ -1,11 +1,13 @@
+from __future__ import print_function
 import numpy as np
 import time
+import platform
+# pyver = platform.python_version()
 
 
-
-def timer(original_function):
+def timer_dec(original_function):
     '''
-    Use as a decorator i.e @timer before a function
+    Use as a decorator i.e @timer_dec before a function
     :param original_function:
     :return:
     '''
@@ -46,7 +48,7 @@ def fprint(s='', v=None, precision=6):
     print(s + ' ' + '{:2.5f}'.format(truncate(v, precision)))
 
 
-class timer:
+class Timer:
     '''
     Use to print the "msg" then run the block and when it ends it'll write "done" and the time it has taken to complete
     For example:
@@ -56,6 +58,7 @@ class timer:
     def __init__(self, msg=''):
         self.msg = msg
         print(self.msg + '... ', end='')
+
     def __enter__(self):
         self.entime = time.time()
     def __exit__(self, *args):
